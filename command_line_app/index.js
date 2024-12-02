@@ -1,9 +1,5 @@
-
-console.log("Welcome to my app")
-
 const playerOne = "Rick"
-const playerTwo = "Jesicsa"
-
+const playerTwo = "Jessica"
 
 const gameState = {
   gameName: "Our amazing guessing game",
@@ -12,29 +8,37 @@ const gameState = {
 
 }
 
+/******************************FUNCTIONS********************************************/
 const addPlayer = (playerName) => {
   gameState.players.push(playerName)
 }
-
-
-console.log("current players:", gameState.players)
-addPlayer(playerOne)
-addPlayer(playerTwo)
-console.log("Player after adding:", gameState.players)
-
-// Function name: welcomePlayer
-// I can pass a player to this function
-// Then this function should welcome the player
-// There won't be any code repeated in terms od welcoming
 
 const welcomePlayer = (playerName) => {
   console.log("Hello, welcome to our game", playerName)
 
 }
 
+const removerLatestAddedPlayer = (params) => {
+  return gameState.players.pop()
+}
+
+/**************************************************************************/
+console.log("Welcome to my app")
+welcomePlayer(playerOne)
+welcomePlayer(playerTwo)
+console.log("current players:", gameState.players)
+addPlayer(playerOne)
+addPlayer(playerTwo)
+addPlayer("The person with the bad internet")
+console.log("Player after adding:", gameState.players)
+const playerThatWasRemove = removerLatestAddedPlayer()
+console.log("Players after removing", gameState.players)
+console.log("The player that was remove:", playerThatWasRemove)
 console.log("The copyright year: ",gameState.copyrightYear)
 console.log("The name of the game:", gameState.gameName)
 
 
-welcomePlayer(playerOne)
-welcomePlayer(playerTwo)
+
+
+
+
