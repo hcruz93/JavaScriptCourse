@@ -41,10 +41,14 @@ const removerLatestAddedPlayer = (params) => {
   return gameState.players.pop()
 }
 
+const startRound =  (roundNumber) => {
+  console.log("Round number", roundNumber)
+  console.log("And here's your question¡")
+  const specificQuestion = questions[roundNumber]
+  console.log(specificQuestion.prompt)
+}
 /**************************************************************************/
 console.log("Welcome to my app")
-welcomePlayer(playerOne)
-welcomePlayer(playerTwo)
 console.log("current players:", gameState.players)
 addPlayer(playerOne)
 addPlayer(playerTwo)
@@ -55,6 +59,9 @@ console.log("Players after removing", gameState.players)
 console.log("The player that was remove:", playerThatWasRemove)
 console.log("The copyright year: ",gameState.copyrightYear)
 console.log("The name of the game:", gameState.gameName)
+welcomePlayer(playerOne)
+welcomePlayer(playerTwo)
+startRound(0)
 
 
 
