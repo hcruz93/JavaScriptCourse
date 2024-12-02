@@ -42,7 +42,7 @@ const removerLatestAddedPlayer = (params) => {
 }
 
 const startRound =  (roundNumber) => {
-  console.log("Round number", roundNumber)
+  console.log(`\n--- Round ${roundNumber} ---`)
   console.log("And here's your question¡")
   const specificQuestion = questions[roundNumber]
   console.log(specificQuestion.prompt)
