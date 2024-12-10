@@ -5,7 +5,7 @@ const gameState = {
   gameName: "Our amazing guessing game",
   copyrightYear: 2024,
   players: [],
-
+  rounds: [],
 }
 
 const questions = [
@@ -46,6 +46,11 @@ const startRound =  (roundNumber) => {
   console.log("And here's your question¡")
   const specificQuestion = questions[roundNumber]
   console.log(specificQuestion.prompt)
+
+  gameState.rounds.push({
+    guesses: [],
+    questions: specificQuestion,
+  })
 }
 /**************************************************************************/
 console.log("Welcome to my app")
@@ -62,6 +67,9 @@ console.log("The name of the game:", gameState.gameName)
 welcomePlayer(playerOne)
 welcomePlayer(playerTwo)
 startRound(0)
+
+console.log(gameState)
+console.log(gameState.rounds)
 
 
 
