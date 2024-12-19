@@ -28,6 +28,13 @@ const questions = [
 ]
 
 /******************************FUNCTIONS********************************************/
+
+const makeGuess = (roundNumber, playerName, guess) => {
+  if (!gameState.rounds[roundNumber]) {
+    throw new Error("Dummy error inside makeGuess()")
+  }
+}
+
 const addPlayer = (playerName) => {
   gameState.players.push(playerName)
 }
@@ -68,11 +75,9 @@ welcomePlayer(playerOne)
 welcomePlayer(playerTwo)
 startRound(0)
 
-console.log(gameState)
-console.log(gameState.rounds)
+// console.log(gameState)
+// console.log(gameState.rounds)
 
-
-
-
-
+makeGuess(0,playerOne, 1969)
+makeGuess(0,playerTwo, 1978)
 
