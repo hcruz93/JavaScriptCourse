@@ -1,44 +1,13 @@
+const {gameState} = require("./gameState") 
+const {startRound} = require("./startRound")
+const {makeGuess} = require("./makeGuess")
+
 const playerOne = "Rick"
 const playerTwo = "Jessica"
 
-const gameState = {
-  gameName: "Our amazing guessing game",
-  copyrightYear: 2024,
-  players: [],
-  rounds: [],
-}
-
-const questions = [
-  {
-    prompt: "In what year was the first Star wars movie released?",
-    answer: 1977,
-  },
-  {
-    prompt: `At the time of release, Titanic (1997) was the most expensive 
-    movie ever made. How did it cost to produce in US dollars?`,
-    answer: 210000000,
-
-  },
-  {
-    prompt: `How many people did Arnold Schwarzenegger kill on screen in all of
-    his movies combined? (Data by alloutabubblegum.com)`,
-    answer: 895,
-
-  },
-]
 
 /******************************FUNCTIONS********************************************/
 
-const makeGuess = (roundNumber, playerName, guess) => {
-  if (!gameState.rounds[roundNumber]) {
-    throw new Error("Dummy error inside makeGuess()")
-  }
-
-  gameState.rounds[roundNumber].guesses.push({
-    player: playerName,
-    guess: guess,
-  })
-}
 
 const addPlayer = (playerName) => {
   gameState.players.push(playerName)
@@ -53,17 +22,7 @@ const removerLatestAddedPlayer = (params) => {
   return gameState.players.pop()
 }
 
-const startRound =  (roundNumber) => {
-  console.log(`\n--- Round ${roundNumber} ---`)
-  console.log("And here's your question¡")
-  const specificQuestion = questions[roundNumber]
-  console.log(specificQuestion.prompt)
 
-  gameState.rounds.push({
-    guesses: [],
-    questions: specificQuestion,
-  })
-}
 /**************************************************************************/
 console.log("Welcome to my app")
 console.log("current players:", gameState.players)
