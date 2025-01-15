@@ -1,7 +1,8 @@
-const {gameState} = require("./gameState") 
-const {startRound} = require("./startRound")
-const {makeGuess} = require("./makeGuess")
-const {addPlayer, removeLatestAddedPlayer} = require("./players")
+const {gameState} = require("./gameState.js") 
+const {startRound} = require("./startRound.js")
+const {makeGuess} = require("./makeGuess.js")
+const {addPlayer, removeLatestAddedPlayer} = require("./players.js")
+const {gatherResults} = require("./gatherResults.js")
 
 const playerOne = "Rick"
 const playerTwo = "Jessica"
@@ -26,14 +27,15 @@ console.log("Players after removing", gameState.players)
 console.log("The player that was remove:", playerThatWasRemove)
 console.log("The copyright year: ",gameState.copyrightYear)
 console.log("The name of the game:", gameState.gameName)
+
 welcomePlayer(playerOne)
 welcomePlayer(playerTwo)
+
 startRound(0)
-
-// console.log(gameState)
-// console.log(gameState.rounds)
-
 makeGuess(0,playerOne, 1969)
 makeGuess(0,playerTwo, 1978)
-
 console.log(JSON.stringify(gameState, undefined, 2))
+const firstRoundResults = gatherResults(0)
+console.log(JSON.stringify(firstRoundResults, undefined, 2))
+
+
