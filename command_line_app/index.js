@@ -1,6 +1,7 @@
 const {gameState} = require("./gameState") 
 const {startRound} = require("./startRound")
 const {makeGuess} = require("./makeGuess")
+const {addPlayer, removeLatestAddedPlayer} = require("./players")
 
 const playerOne = "Rick"
 const playerTwo = "Jessica"
@@ -9,20 +10,10 @@ const playerTwo = "Jessica"
 /******************************FUNCTIONS********************************************/
 
 
-const addPlayer = (playerName) => {
-  gameState.players.push(playerName)
-}
-
 const welcomePlayer = (playerName) => {
   console.log("Hello, welcome to our game", playerName)
 
 }
-
-const removerLatestAddedPlayer = (params) => {
-  return gameState.players.pop()
-}
-
-
 /**************************************************************************/
 console.log("Welcome to my app")
 console.log("current players:", gameState.players)
@@ -30,7 +21,7 @@ addPlayer(playerOne)
 addPlayer(playerTwo)
 addPlayer("The person with the bad internet")
 console.log("Player after adding:", gameState.players)
-const playerThatWasRemove = removerLatestAddedPlayer()
+const playerThatWasRemove = removeLatestAddedPlayer()
 console.log("Players after removing", gameState.players)
 console.log("The player that was remove:", playerThatWasRemove)
 console.log("The copyright year: ",gameState.copyrightYear)
