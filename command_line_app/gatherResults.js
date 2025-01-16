@@ -12,6 +12,14 @@ const gatherResults =  (roundNumber) => {
     throw new Error(`The round with number ${roundNumber} had no guesses`)
   }
 
+  for (let index = 0; index < round.guesses.length; index++) {
+    const element = round.guesses[index];
+    console.log(element)
+    
+  }
+
+
+
   return {
     "Rick": 100,
     "Jessica": 100,
