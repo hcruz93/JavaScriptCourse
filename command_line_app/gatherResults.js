@@ -20,9 +20,9 @@ const round = gameState.rounds[roundNumber]
 
     let score = 1
 
-    if (round.questions.answer === guess.guess) {
+    if (offFromSolution <= round.questions.correctAnswerOffset) {
       score = 10
-    } else if (offFromSolution <= 5) {
+    } else if (offFromSolution <= round.questions.closeAnswerOffset) {
       score = 5
     }
 
