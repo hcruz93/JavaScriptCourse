@@ -68,7 +68,7 @@ const main = async () => {
   makeGuess(0,playerOne, playerOneRoundZeroGuess)
   makeGuess(0,playerTwo, playerTwoRoundZeroGuess)
   const firstRoundResults = gatherResults(0)
-  console.log(JSON.stringify(firstRoundResults, undefined, 2))
+  console.log("Round results", JSON.stringify(firstRoundResults, undefined, 2))
 
   startRound(1)
   const playerOneRoundOneGuess = await gatherPlayerGuess(playerOne)
@@ -76,7 +76,7 @@ const main = async () => {
   makeGuess(1,playerOne, playerOneRoundOneGuess)
   makeGuess(1,playerTwo, playerTwoRoundOneGuess)
   const secondRoundResults = gatherResults(1)
-  console.log(JSON.stringify(secondRoundResults, undefined, 2))
+  console.log("Round results", JSON.stringify(secondRoundResults, undefined, 2))
 
   startRound(2)
   const playerOneRoundTwoGuess = await gatherPlayerGuess(playerOne)
@@ -84,10 +84,10 @@ const main = async () => {
   makeGuess(2,playerOne, playerOneRoundTwoGuess)
   makeGuess(2,playerTwo, playerTwoRoundTwoGuess)
   const thirddRoundResults = gatherResults(2)
-  console.log(JSON.stringify(thirddRoundResults, undefined, 2))
+  console.log("Round results", JSON.stringify(thirddRoundResults, undefined, 2))
 
   const finalResults = calculateFinalResults()
-  console.log(finalResults)
+  console.log("\nFinal results", finalResults)
 
 }
 
