@@ -4,6 +4,7 @@ const {makeGuess} = require("./makeGuess.js")
 const {addPlayer, removeLatestAddedPlayer} = require("./players.js")
 const {gatherResults} = require("./gatherResults.js")
 const {calculateFinalResults} = require("./calculateFinalResults.js")
+const {readQuestion, readQuestions} = require("./questions.js")
 const prompts = require("prompts")
 
 const gatherPlayerGuess = async (playerName) => {
@@ -92,4 +93,6 @@ const main = async () => {
 }
 
 
-main ()
+// main ()
+
+readQuestions()
