@@ -13,8 +13,8 @@ const readQuestions = () => {
         if (err) {
           reject(err)
         } else {
-          resolve(data)
-        }
+          resolve(JSON.parse(data))
+          }
       }
     )
   })
