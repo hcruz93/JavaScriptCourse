@@ -95,4 +95,11 @@ const main = async () => {
 
 // main ()
 
-readQuestions()
+const anotherWrapper = async () => {
+
+  const questionsFromFiles = await readQuestions()
+  console.log("questionsFromFiles", questionsFromFiles)
+}
+
+anotherWrapper()
+
