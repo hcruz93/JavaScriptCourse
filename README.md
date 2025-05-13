@@ -23,3 +23,8 @@ https://www.npmjs.com/package/express/v/4.18.2
 
 
 
+## instalae morgan en la carpeta de backend
+
+ npm install --save morgan
+
+ https://expressjs.com/en/resources/middleware/morgan.html

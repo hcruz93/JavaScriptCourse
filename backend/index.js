@@ -1,5 +1,6 @@
 import express from 'express' // ES6 module syntax
 // const express = require('express')  // CommonJS syntax
+import morgan from 'morgan' 
 import { helloHandler } from './handlers/hello.js'
 import { stateHandler } from './handlers/state.js'
 import { getPlayersHandler } from './handlers/getPlayers.js'
@@ -8,6 +9,7 @@ import { addPlayerHandler } from './handlers/addPlayer.js'
 const app = express()
 
 app.use(express.json()) // Middleware to parse JSON request body
+app.use(morgan('dev'))
 
 app.get('/hello', helloHandler )
 app.get('/state', stateHandler ) // /state endpoint to get the game state
