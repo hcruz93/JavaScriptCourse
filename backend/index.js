@@ -6,6 +6,7 @@ import { stateHandler } from './handlers/state.js'
 import { getPlayersHandler } from './handlers/getPlayers.js'
 import { addPlayerHandler } from './handlers/addPlayer.js'
 import { startNewRoundWithRandomQuestion } from './handlers/startNewRoundWithRandomQuestion.js'
+import { makeGuessHandler } from './handlers/makeGuess.js'
 
 const app = express()
 
@@ -17,6 +18,7 @@ app.get('/state', stateHandler ) // /state endpoint to get the game state
 app.get('/players', getPlayersHandler ) 
 app.post('/players',addPlayerHandler) // /players endpoint to add a player
 app.post('/round/start/randomquestion',startNewRoundWithRandomQuestion)
+app.post('/guess', makeGuessHandler) // /guess endpoint to make a guess
 
 // Respond with 200
 
