@@ -16,7 +16,7 @@ export const makeGuessHandler = (request, response) => {
     return
   }
 
-  if (!request.body.guess) {
+  if (request.body.guess === undefined) {
     response.status(400).send({
       message: "No 'guess' property is sent"
     })
