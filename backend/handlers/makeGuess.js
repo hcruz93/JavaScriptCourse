@@ -23,4 +23,17 @@ export const makeGuessHandler = (request, response) => {
     return
   }
 
+  const currentRoundId = gameState.rounds[gameState.rounds.length - 1].id
+
+  if (!gameState.guesses[currentRoundId]) {
+    gameState.guesses[currentRoundId] = []
+  }
+
+  gameState.guesses[currentRoundId].push({
+    player: request.body.player,
+    guess: request.body.guess,
+  })
+
+  response.status(201).send(gameState)
+
 }
