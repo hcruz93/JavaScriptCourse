@@ -8,6 +8,7 @@ import { addPlayerHandler } from './handlers/addPlayer.js'
 import { startNewRoundWithRandomQuestion } from './handlers/startNewRoundWithRandomQuestion.js'
 import { makeGuessHandler } from './handlers/makeGuess.js'
 import { getCurrentRoundHandler } from './handlers/getCurrentRound.js'
+import { getCurrentRoundAnswersHandler } from './handlers/getCurrentRoundAnswersHandler.js'
 
 const app = express()
 
@@ -20,6 +21,7 @@ app.get('/players', getPlayersHandler )
 app.post('/players',addPlayerHandler) // /players endpoint to add a player
 app.post('/round/start/randomquestion',startNewRoundWithRandomQuestion)
 app.get('/round/current', getCurrentRoundHandler) // /round/current endpoint to get the current round
+app.get('/round/current/answers', getCurrentRoundAnswersHandler)
 app.post('/guess', makeGuessHandler) // /guess endpoint to make a guess
 
 // Respond with 200
