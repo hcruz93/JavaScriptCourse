@@ -25,15 +25,30 @@ if (!matchingQuestion) {
 
 console.log(matchingQuestion)
 
+const results = []
+const roundGuesses = gameState.guesses[currentRound.id] || []
+roundGuesses.forEach((roundGuess) => {
+  results.push({
+    player: roundGuess.player,
+    guess: roundGuess.guess,
+    difference: 42,
+    points: 22,
+  })
+})
+
+console.log("Round guesses",JSON.stringify(roundGuesses, undefined, 2))
+
+    // results = [
+    //   {
+    //     player: 'Rick',
+    //     guess: 1979,
+    //     difference: 2, //1977
+    //     points: 5,
+    //   }
+    // ]
+
   response.status(200).send({
-    results: [
-      {
-        player: 'Rick',
-        guess: 1979,
-        difference: 2, //1977
-        points: 5,
-      }
-    ],
+    results: results,
     overallGamePoints: [
       {
         name: 'Rick',
