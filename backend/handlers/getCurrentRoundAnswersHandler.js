@@ -1,6 +1,23 @@
 import { gameState } from '../gameState/index.js'
 import { questions } from '../questions.js'
 
+const getResults =  (currentRound,matchingQuestion) => {
+  const results = []
+
+  const roundGuesses = gameState.guesses[currentRound.id] || []
+  roundGuesses.forEach((roundGuess) => {
+
+
+    results.push({
+      player: roundGuess.player,
+      guess: roundGuess.guess,
+      difference: Math.abs(roundGuess.guess - matchingQuestion.answer),
+      points: 22,
+    })
+  })
+  return results
+}
+
 export const getCurrentRoundAnswersHandler = (request, response) => {
   if (gameState.rounds.length === 0) {
     response.status(400).send({
@@ -25,30 +42,9 @@ if (!matchingQuestion) {
 
 console.log(matchingQuestion)
 
-const results = []
-const roundGuesses = gameState.guesses[currentRound.id] || []
-roundGuesses.forEach((roundGuess) => {
-  results.push({
-    player: roundGuess.player,
-    guess: roundGuess.guess,
-    difference: 42,
-    points: 22,
-  })
-})
-
-console.log("Round guesses",JSON.stringify(roundGuesses, undefined, 2))
-
-    // results = [
-    //   {
-    //     player: 'Rick',
-    //     guess: 1979,
-    //     difference: 2, //1977
-    //     points: 5,
-    //   }
-    // ]
 
   response.status(200).send({
-    results: results,
+    results: getResults(currentRound, matchingQuestion),
     overallGamePoints: [
       {
         name: 'Rick',
