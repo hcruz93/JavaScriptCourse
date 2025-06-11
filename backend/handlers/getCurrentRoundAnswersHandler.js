@@ -1,18 +1,26 @@
 import { gameState } from '../gameState/index.js'
 import { questions } from '../questions.js'
 
+
+const getPoints = (difference, pointRanges) => {
+  pointRanges.sort((a, b) => {
+    return a.threshold - b.threshold;
+  })
+
+  console.warn(pointRanges)
+}
+
 const getResults =  (currentRound,matchingQuestion) => {
   const results = []
 
   const roundGuesses = gameState.guesses[currentRound.id] || []
   roundGuesses.forEach((roundGuess) => {
-
-
+    const difference = Math.abs(roundGuess.guess - matchingQuestion.answer)
     results.push({
       player: roundGuess.player,
       guess: roundGuess.guess,
-      difference: Math.abs(roundGuess.guess - matchingQuestion.answer),
-      points: 22,
+      difference: difference,
+      points: getPoints(difference, matchingQuestion.pointRanges),
     })
   })
   return results
