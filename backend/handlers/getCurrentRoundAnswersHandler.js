@@ -8,6 +8,14 @@ const getPoints = (difference, pointRanges) => {
   })
 
   console.warn(pointRanges)
+  for (let index = 0; index < pointRanges.length; index++) {
+    const pointRange = pointRanges[index]
+    if (difference <= pointRange.threshold) {
+      return pointRange.points
+    }
+    
+  }
+  return 0; // If no range matches, return 0 points
 }
 
 const getResults =  (currentRound,matchingQuestion) => {

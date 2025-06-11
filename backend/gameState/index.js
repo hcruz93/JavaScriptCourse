@@ -14,11 +14,11 @@ export const gameState = {
       "2913b41a-2968-49c8-8e62-42e976f90512": [
           {
               "player": "Rick",
-              "guess": 20
+              "guess": 72
           },
           {
               "player": "Jenny",
-              "guess": 40
+              "guess": 68
           }
       ]
   },
