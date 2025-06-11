@@ -42,35 +42,36 @@ export const getCurrentRoundAnswersHandler = (request, response) => {
     return
   }
 
-const currentRound = gameState.rounds[gameState.rounds.length - 1]
+  const currentRound = gameState.rounds[gameState.rounds.length - 1]
 
-const matchingQuestion = questions.find((question)=>{
-  return question.id === currentRound.questionId
+  const matchingQuestion = questions.find((question)=>{
+    return question.id === currentRound.questionId
 
-})
-
-if (!matchingQuestion) {
-  response.status(500).send({
-    message: `there was no question with ID ${currentRound.questionId}`
   })
-  return
-}
 
-console.log(matchingQuestion)
+  if (!matchingQuestion) {
+    response.status(500).send({
+      message: `there was no question with ID ${currentRound.questionId}`
+    })
+    return
+  }
 
+  const results = getResults(currentRound, matchingQuestion)
+  
+  results.forEach((result) => {
+    console.log(result)
+    const playerGameState = gameState.players.find((player) => {
+      return player.name === result.player
+    })
+
+    if (playerGameState) {
+      playerGameState.points += result.points
+    }
+  })
 
   response.status(200).send({
-    results: getResults(currentRound, matchingQuestion),
-    overallGamePoints: [
-      {
-        name: 'Rick',
-        points: 10,
-      },
-      {
-        name: 'Jenny',
-        points: 5,
-      },
-    ],
+    results: results,
+    overallGamePoints: gameState.players,
   })
   return
 }
