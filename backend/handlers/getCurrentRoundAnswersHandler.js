@@ -59,7 +59,6 @@ export const getCurrentRoundAnswersHandler = (request, response) => {
   const results = getResults(currentRound, matchingQuestion)
   
   results.forEach((result) => {
-    console.log(result)
     const playerGameState = gameState.players.find((player) => {
       return player.name === result.player
     })
