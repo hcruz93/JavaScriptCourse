@@ -1,5 +1,6 @@
 import express from 'express' // ES6 module syntax
 // const express = require('express')  // CommonJS syntax
+import cors from 'cors' // Middleware to enable CORS
 import morgan from 'morgan' 
 import { helloHandler } from './handlers/hello.js'
 import { stateHandler } from './handlers/state.js'
@@ -12,6 +13,7 @@ import { getCurrentRoundAnswersHandler } from './handlers/getCurrentRoundAnswers
 
 const app = express()
 
+app.use(cors()) // Enable CORS for all routes
 app.use(express.json()) // Middleware to parse JSON request body
 app.use(morgan('dev'))
 
