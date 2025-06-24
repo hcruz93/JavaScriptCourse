@@ -1,4 +1,7 @@
+"use client"
+
 import Link from "next/link"
+import { getPlayers } from "../requests/getPlayers"
 
 export default function Home() {
   const players = [
@@ -11,6 +14,13 @@ export default function Home() {
       points: 0,
     },
   ]
+
+  // doesnt work await getPlayers() because it is not async
+  getPlayers().then( (response) => {
+    console.warn("Response from backend", response)
+  })
+
+
  return (
   <div>
     <h1>Guessing game</h1>
