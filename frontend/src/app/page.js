@@ -2,22 +2,14 @@
 
 import Link from "next/link"
 import { getPlayers } from "../requests/getPlayers"
+import { useState } from "react"
 
 export default function Home() {
-  const players = [
-  	{
-      name: "Rick",
-      points: 0,
-    },
-    {
-      name: "Jenny",
-      points: 0,
-    },
-  ]
+  const [players, setPlayers] = useState([])
 
-  // doesnt work await getPlayers() because it is not async
   getPlayers().then( (response) => {
-    console.warn("Response from backend", response)
+    console.warn("Response from backend", response.data)
+    setPlayers(response.data)
   })
 
 
