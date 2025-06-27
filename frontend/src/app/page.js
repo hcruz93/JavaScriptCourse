@@ -13,15 +13,15 @@ export default function Home() {
       setPlayers(response.data)
     })
   }, [])
-  
+
  return (
   <div>
     <h1>Guessing game</h1>
     <p>Waiting for a player</p>
     {
-      players.map((player) => {
+      players.map((player,index) => {
         return (
-          <p>{player.name}</p>
+          <p key={index}>{player.name}</p>
         )
       })
     }
