@@ -2,17 +2,18 @@
 
 import Link from "next/link"
 import { getPlayers } from "../requests/getPlayers"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function Home() {
   const [players, setPlayers] = useState([])
 
-  getPlayers().then( (response) => {
-    console.warn("Response from backend", response.data)
-    setPlayers(response.data)
-  })
-
-
+  useEffect((params) => {
+    getPlayers().then( (response) => {
+      console.warn("Response from backend", response.data)
+      setPlayers(response.data)
+    })
+  }, [])
+  
  return (
   <div>
     <h1>Guessing game</h1>
