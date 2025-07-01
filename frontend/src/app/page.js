@@ -26,7 +26,7 @@ export default function Home() {
       })
     }
     <h2>join</h2>
-    <p>Navigate to <Link href="/joinb">/join</Link> on your phone to join the game</p>
+    <p>Navigate to <Link href="/join">/join</Link> on your phone to join the game</p>
   </div>
  )
 }
