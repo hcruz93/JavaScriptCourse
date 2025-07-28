@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { addPlayer } from "@/requests/addPlayer.js"
 
 export default function Join() {
 
@@ -12,6 +13,10 @@ export default function Join() {
 
   const submitPlayerName = () => {
     console.log("Called submit player name", playerName)
+
+    addPlayer(playerName).then((response) => {
+      console.log("response after that addPlayer",response)
+    })
   }
 
   return(
