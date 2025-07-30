@@ -6,6 +6,7 @@ import { addPlayer } from "@/requests/addPlayer.js"
 export default function Join() {
 
   const [playerName,setPlayerName]= useState(undefined)
+  const [addPlayerSuccess, setAddPlayerSuccess] = useState(undefined)
 
   const handlePlayerNameInputChange = (event) => {
     setPlayerName(event.target.value)
@@ -16,6 +17,10 @@ export default function Join() {
 
     addPlayer(playerName).then((response) => {
       console.log("response after that addPlayer",response)
+      setAddPlayerSuccess(true)
+    }).catch((error)=>{
+      console.error("Error after add Player", error)
+      setAddPlayerSuccess(false)
     })
   }
 
@@ -28,6 +33,10 @@ export default function Join() {
       <p>
         <button type="submit" onClick={submitPlayerName}> Join Game </button>
       </p>
+      { addPlayerSuccess === true ? <p>your threw your hat into the ring! 
+      The page will redirect when the game starts</p> : null}
+      { addPlayerSuccess === false ? <p>An error occured. </p> : null}
+      
     </div>
   )
 }
