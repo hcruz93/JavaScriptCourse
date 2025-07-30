@@ -27,12 +27,16 @@ export default function Join() {
   return(
     <div>
       <h1>Submit your player name</h1>
-      <p>
-        <input type="text" onChange={handlePlayerNameInputChange}/>
-      </p>
-      <p>
-        <button type="submit" onClick={submitPlayerName}> Join Game </button>
-      </p>
+      { addPlayerSuccess === true ? null : 
+        <div> 
+          <p>
+            <input type="text" onChange={handlePlayerNameInputChange}/>
+          </p>
+          <p>
+            <button type="submit" onClick={submitPlayerName}> Join Game </button>
+          </p> 
+        </div>
+      } 
       { addPlayerSuccess === true ? <p>your threw your hat into the ring! 
       The page will redirect when the game starts</p> : null}
       { addPlayerSuccess === false ? <p>An error occured. </p> : null}
