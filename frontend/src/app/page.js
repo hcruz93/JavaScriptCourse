@@ -7,11 +7,13 @@ import { useState, useEffect } from "react"
 export default function Home() {
   const [players, setPlayers] = useState([])
 
-  useEffect((params) => {
-    getPlayers().then( (response) => {
-      console.warn("Response from backend", response.data)
-      setPlayers(response.data)
-    })
+  useEffect(() => {
+    setInterval(()=>{
+      getPlayers().then( (response) => {
+        console.warn("Response from backend", response.data)
+        setPlayers(response.data)
+      })
+    },1000)
   }, [])
 
  return (
