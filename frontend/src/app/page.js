@@ -19,6 +19,7 @@ export default function Home() {
  return (
   <div>
     <h1>Guessing game</h1>
+    <Link href= "/game"><button>Start Game</button></Link>
     <p>Waiting for a player</p>
     {
       players.map((player,index) => {
