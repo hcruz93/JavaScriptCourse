@@ -25,12 +25,16 @@ export const startNewRoundWithRandomQuestion = (request, response) => {
 
   const newRound = {
     id: uuidv4(),
-    questionId: notYetAskedQuestions[randomIdx].id
+    // TODO: Bring back
+    // questionId: notYetAskedQuestions[randomIdx].id
+    questionId: questions[0].id
   }
   
   gameState.rounds.push(newRound)
   return response.status(200).send({
     round: newRound,
-    question: notYetAskedQuestions[randomIdx]
+    // TODO: Bring back
+    // question: notYetAskedQuestions[randomIdx]
+    question: questions[0]
   })
 }
