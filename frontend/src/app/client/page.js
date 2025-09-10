@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from 'react';
+import { makeGuess } from '@/requests/makeGuess';
 
 export default function Client() {
 
@@ -12,6 +13,19 @@ export default function Client() {
 
   const handleSubmitGuess = () => {
     console.log("submitting guess:", guess);
+    const guessAsNumber = parseInt(guess)
+    if (isNaN(guessAsNumber)) {
+      console.log("Guess was not a number");
+      return
+    }
+    //TODO: populate with real player namr
+    makeGuess("hardcoded_player_name", guessAsNumber)
+    .then((response) => {
+      console.log("response for submitting", response);
+    })
+    .catch((error) => {
+      console.log("Errot submitting",error);
+    })
   }
 
   return (
