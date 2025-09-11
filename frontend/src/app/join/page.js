@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { addPlayer } from "@/requests/addPlayer.js"
+import * as cookieCutter from "cookie-cutter"
 
 export default function Join() {
 
@@ -18,6 +19,8 @@ export default function Join() {
     addPlayer(playerName).then((response) => {
       console.log("response after that addPlayer",response)
       setAddPlayerSuccess(true)
+      // set cookie
+      cookieCutter.set("playerName", playerName)
     }).catch((error)=>{
       console.error("Error after add Player", error)
       setAddPlayerSuccess(false)
