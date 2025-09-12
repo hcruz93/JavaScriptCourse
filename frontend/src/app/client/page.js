@@ -1,7 +1,8 @@
 "use client"
 
 import { useState } from 'react';
-import { makeGuess } from '@/requests/makeGuess';
+import { makeGuess } from '@/requests/makeGuess.js';
+import * as cookieCutter from "cookie-cutter"
 
 export default function Client() {
 
@@ -18,8 +19,15 @@ export default function Client() {
       console.log("Guess was not a number");
       return
     }
-    //TODO: populate with real player namr
-    makeGuess("hardcoded_player_name", guessAsNumber)
+
+    const playerName = cookieCutter.get("playerName")
+
+    if (!playerName) {
+      console.error("no cookie playerName was defined")
+      return
+    }
+
+    makeGuess(playerName, guessAsNumber)
     .then((response) => {
       console.log("response for submitting", response);
     })
