@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { addPlayer } from "@/requests/addPlayer.js"
+import { getCurrentRound } from "@/requests/getCurrentRound.js"
 import * as cookieCutter from "cookie-cutter"
 
 export default function Join() {
@@ -26,6 +27,18 @@ export default function Join() {
       setAddPlayerSuccess(false)
     })
   }
+
+  useEffect(() => {
+    setInterval(() => {
+      getCurrentRound()
+      .then((response) => {
+        console.log("response from current round", response);
+      })
+      .catch((error) => {
+        console.error("error from getting round", error)
+      })
+    },1000)
+  },[])
 
   return(
     <div>
