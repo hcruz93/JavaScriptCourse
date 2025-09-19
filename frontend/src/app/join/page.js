@@ -4,8 +4,10 @@ import { useState, useEffect } from "react"
 import { addPlayer } from "@/requests/addPlayer.js"
 import { getCurrentRound } from "@/requests/getCurrentRound.js"
 import * as cookieCutter from "cookie-cutter"
+import { useRouter } from "next/navigation"
 
 export default function Join() {
+  const router = useRouter()
 
   const [playerName,setPlayerName]= useState(undefined)
   const [addPlayerSuccess, setAddPlayerSuccess] = useState(undefined)
@@ -33,6 +35,7 @@ export default function Join() {
       getCurrentRound()
       .then((response) => {
         console.log("response from current round", response);
+        router.push("/client")
       })
       .catch((error) => {
         console.error("error from getting round", error)
