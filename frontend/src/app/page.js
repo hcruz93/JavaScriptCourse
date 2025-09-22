@@ -8,12 +8,16 @@ export default function Home() {
   const [players, setPlayers] = useState([])
 
   useEffect(() => {
-    setInterval(()=>{
+    const interval= setInterval(()=>{
       getPlayers().then( (response) => {
         console.warn("Response from backend", response.data)
         setPlayers(response.data)
       })
     },1000)
+    //Cleanup function after destruction
+    return () => {
+      clearInterval(interval)
+    }
   }, [])
 
  return (

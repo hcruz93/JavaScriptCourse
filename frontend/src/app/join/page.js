@@ -31,7 +31,7 @@ export default function Join() {
   }
 
   useEffect(() => {
-    setInterval(() => {
+    const interval= setInterval(() => {
       getCurrentRound()
       .then((response) => {
         console.log("response from current round", response);
@@ -41,6 +41,11 @@ export default function Join() {
         console.error("error from getting round", error)
       })
     },1000)
+
+    // Cleanup after page is destroyed
+    return () => {
+      clearInterval(interval)
+    }
   },[])
 
   return(
