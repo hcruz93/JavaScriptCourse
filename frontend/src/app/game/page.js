@@ -6,6 +6,8 @@ import { startRoundWithRandomQuestion } from "@/requests/startRoundWithRandomQue
 
 export default function Game() {
   const [prompt, setPrompt] = useState(undefined)
+  //TODO: Change to 30 seconds when finalising
+  const [timeLeft, setTimeLeft] = useState(3)
 
   useEffect(() => {
     startRoundWithRandomQuestion()
@@ -14,14 +16,30 @@ export default function Game() {
       setPrompt(response.data.question.prompt)
     })
     .catch((error)=>{
-      console.error("Error starting round", error)
+      console.error("Error starting random round", error)
     })
   },[])
+
+  useEffect(() => {
+    if (timeLeft <= 0) {
+      return 
+    }
+
+    const interval = setInterval(() => {
+      setTimeLeft(timeLeft-1)
+    },1000)
+
+    // Cleanup interval
+    return () => {
+      clearInterval(interval)
+    }
+  }, [timeLeft])
 
   return(
     <div>
       <h1>Question!</h1>
       <p className="question">{prompt}</p>
+      <p>Make guess in your phone! Time left: {timeLeft}</p>
     </div>
   )
 }
