@@ -9,16 +9,17 @@ export default function Game() {
   //TODO: Change to 30 seconds when finalising
   const [timeLeft, setTimeLeft] = useState(3)
 
-  useEffect(() => {
-    startRoundWithRandomQuestion()
-    .then((response)=>{
-      console.log("Response from starting random round", response)
-      setPrompt(response.data.question.prompt)
-    })
-    .catch((error)=>{
-      console.error("Error starting random round", error)
-    })
-  },[])
+  // TODO: Bring back when finalising
+  // useEffect(() => {
+  //   startRoundWithRandomQuestion()
+  //   .then((response)=>{
+  //     console.log("Response from starting random round", response)
+  //     setPrompt(response.data.question.prompt)
+  //   })
+  //   .catch((error)=>{
+  //     console.error("Error starting random round", error)
+  //   })
+  // },[])
 
   useEffect(() => {
     if (timeLeft <= 0) {

@@ -13,8 +13,28 @@ export const gameState = {
         points: 0,
     },
   ],
-  guesses: {},
-  rounds: [],
+  guesses: {
+	  "hardcoded": [
+      {
+        "player": "Ross",
+        "guess": 1977
+      },
+      {
+        "player": "Joey",
+        "guess": 1991
+      },
+      {
+        "player": "Chandler",
+        "guess": 1976
+      },
+    ]
+  },
+  rounds: [
+    {
+      "id": "hardcoded",
+      "questionId": "star-wars-release",
+    },
+  ],
   points: {},
 }
 
