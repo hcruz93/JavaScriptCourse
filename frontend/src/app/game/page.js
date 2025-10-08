@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react"
 import { startRoundWithRandomQuestion } from "@/requests/startRoundWithRandomQuestion.js"
+import { getRoundAnswer } from "@/requests/getRoundAnswer.js"
 
 export default function Game() {
   const [prompt, setPrompt] = useState(undefined)
@@ -35,6 +36,20 @@ export default function Game() {
       clearInterval(interval)
     }
   }, [timeLeft])
+
+  useEffect(() => {
+    if (timeLeft > 0) {
+      return 
+    }
+
+    getRoundAnswer()
+    .then((response)=>{
+      console.log("response from getting round answers", response)
+    })
+    .catch((error)=>{
+      console.error("error from getting round answers", error)
+    })
+  },[timeLeft])
 
   return(
     <div>
