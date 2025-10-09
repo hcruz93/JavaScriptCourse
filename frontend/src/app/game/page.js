@@ -9,6 +9,7 @@ export default function Game() {
   const [prompt, setPrompt] = useState(undefined)
   //TODO: Change to 30 seconds when finalising
   const [timeLeft, setTimeLeft] = useState(3)
+  const [answersResponse, setanswersResponse] = useState(undefined)
 
   // TODO: Bring back when finalising
   // useEffect(() => {
@@ -45,6 +46,7 @@ export default function Game() {
     getRoundAnswer()
     .then((response)=>{
       console.log("response from getting round answers", response)
+      setanswersResponse(response.data)
     })
     .catch((error)=>{
       console.error("error from getting round answers", error)
@@ -52,11 +54,33 @@ export default function Game() {
   },[timeLeft])
 
   const renderAnswers = () => {
+    if (!answersResponse) {
+      return null
+    }
+    if (!answersResponse.overallGamePoints) {
+      return null
+    }
+
+
+
     return(
       <div>
+        {answersResponse.results.map((resultsObj,idx)=>{
+          return (
+            <p key={idx}>
+              {resultsObj.player} guessed {resultsObj.guess} --
+              {resultsObj.points} points ({resultsObj.difference} off)
+            </p>
+          )
+        })}
         <p>
-          Here go the answer
+          This brings the overall score to the following:
         </p>
+        {answersResponse.overallGamePoints.map((pointsObj, idx)=> {
+          return (
+            <p key={idx}>{pointsObj.name}: {pointsObj.points}</p>
+          )
+        })}
       </div>
     )
   }
