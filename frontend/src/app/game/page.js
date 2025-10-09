@@ -65,6 +65,7 @@ export default function Game() {
 
     return(
       <div>
+        <h4>the answer was: <b>{answersResponse.roundAnswer}</b></h4>
         {answersResponse.results.map((resultsObj,idx)=>{
           return (
             <p key={idx}>
@@ -74,7 +75,7 @@ export default function Game() {
           )
         })}
         <p>
-          This brings the overall score to the following:
+          <b>This brings the overall score to the following:</b>
         </p>
         {answersResponse.overallGamePoints.map((pointsObj, idx)=> {
           return (

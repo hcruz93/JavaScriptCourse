@@ -36,7 +36,7 @@ const getResults =  (currentRound,matchingQuestion) => {
 
 export const getCurrentRoundAnswersHandler = (request, response) => {
   if (gameState.rounds.length === 0) {
-    response.status(400).send({
+    response.status(404).send({
       message: 'No round has been started yet'
     })
     return
@@ -69,6 +69,7 @@ export const getCurrentRoundAnswersHandler = (request, response) => {
   })
 
   response.status(200).send({
+    roundAnswer: matchingQuestion.answer,
     results: results,
     overallGamePoints: gameState.players,
   })
