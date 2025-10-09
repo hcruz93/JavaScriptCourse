@@ -47,6 +47,12 @@ export default function Game() {
     .then((response)=>{
       console.log("response from getting round answers", response)
       setanswersResponse(response.data)
+
+      // REfresh the page after x seconds
+      //TODO: change the interval when finalising
+      setTimeout(() => {
+        window.location.reload(false)
+      }, 2000);
     })
     .catch((error)=>{
       console.error("error from getting round answers", error)
@@ -90,8 +96,9 @@ export default function Game() {
     <div>
       <h1>Question!</h1>
       <p className="question">{prompt}</p>
-      { timeLeft <= 0 ? null : <p>Make guess in your phone! Time left: {timeLeft}</p> }
+      { timeLeft <= 0 ? null : <p>Make guess in your phone! Time left: {timeLeft} seconds</p> }
       { timeLeft <= 0 ? renderAnswers() : null }
+      {timeLeft <= 0 ? <p>Buckle up, new question coming up sonn!</p> : null}
     </div>
   )
 }
