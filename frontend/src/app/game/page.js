@@ -51,11 +51,22 @@ export default function Game() {
     })
   },[timeLeft])
 
+  const renderAnswers = () => {
+    return(
+      <div>
+        <p>
+          Here go the answer
+        </p>
+      </div>
+    )
+  }
+
   return(
     <div>
       <h1>Question!</h1>
       <p className="question">{prompt}</p>
       { timeLeft <= 0 ? null : <p>Make guess in your phone! Time left: {timeLeft}</p> }
+      { timeLeft <= 0 ? renderAnswers() : null }
     </div>
   )
 }
