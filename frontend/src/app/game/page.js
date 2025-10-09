@@ -4,24 +4,30 @@
 import { useEffect, useState } from "react"
 import { startRoundWithRandomQuestion } from "@/requests/startRoundWithRandomQuestion.js"
 import { getRoundAnswer } from "@/requests/getRoundAnswer.js"
+import { useRouter } from "next/navigation"
 
 export default function Game() {
+  const router = useRouter()
+
   const [prompt, setPrompt] = useState(undefined)
   //TODO: Change to 30 seconds when finalising
   const [timeLeft, setTimeLeft] = useState(3)
   const [answersResponse, setanswersResponse] = useState(undefined)
 
-  // TODO: Bring back when finalising
-  // useEffect(() => {
-  //   startRoundWithRandomQuestion()
-  //   .then((response)=>{
-  //     console.log("Response from starting random round", response)
-  //     setPrompt(response.data.question.prompt)
-  //   })
-  //   .catch((error)=>{
-  //     console.error("Error starting random round", error)
-  //   })
-  // },[])
+  useEffect(() => {
+    startRoundWithRandomQuestion()
+    .then((response)=>{
+      // if response status code is 410, redirect to /gameover
+      if (response.status === 410) {
+        router.push("/gameover")
+      }
+      console.log("Response from starting random round", response)
+      setPrompt(response.data.question.prompt)
+    })
+    .catch((error)=>{
+      console.error("Error starting random round", error)
+    })
+  },[])
 
   useEffect(() => {
     if (timeLeft <= 0) {
