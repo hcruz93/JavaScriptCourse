@@ -5,6 +5,8 @@ import { useEffect, useState } from "react"
 import { startRoundWithRandomQuestion } from "@/requests/startRoundWithRandomQuestion.js"
 import { getRoundAnswer } from "@/requests/getRoundAnswer.js"
 import { useRouter } from "next/navigation"
+import SecretAgent from "../../../public/images/secret_agent_guessing.jpg"
+import Image from "next/image"
 
 export default function Game() {
   const router = useRouter()
@@ -103,8 +105,9 @@ export default function Game() {
       <h1>Question!</h1>
       <p className="question">{prompt}</p>
       { timeLeft <= 0 ? null : <p>Make guess in your phone! Time left: {timeLeft} seconds</p> }
+      { timeLeft <= 0 ? null: <Image src={SecretAgent}/>}
       { timeLeft <= 0 ? renderAnswers() : null }
-      {timeLeft <= 0 ? <p>Buckle up, new question coming up sonn!</p> : null}
+      { timeLeft <= 0 ? <p>Buckle up, new question coming up sonn!</p> : null}
     </div>
   )
 }

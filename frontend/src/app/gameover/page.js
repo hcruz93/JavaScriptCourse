@@ -2,6 +2,8 @@
 
 import { getPlayers } from "@/requests/getPlayers.js"
 import { useEffect, useState } from "react"
+import ResultsDinosaur from "../../../public/images/results.jpg"
+import Image from "next/image"
 
 export default function GameOver() {
   const [results, setResults]= useState(undefined)
@@ -34,6 +36,7 @@ export default function GameOver() {
     <div>
       <h1>Thanks for playing!</h1>
       { results ? renderResults() : <p>Loading results...</p> }
+      <Image src={ResultsDinosaur}/>
     </div>
   )
 }
