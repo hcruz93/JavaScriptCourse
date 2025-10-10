@@ -8,12 +8,14 @@ import { useRouter } from "next/navigation"
 import SecretAgent from "../../../public/images/secret_agent_guessing.jpg"
 import Image from "next/image"
 
+const ROUND_LENGTH= 30
+const TIME_BEFORE_NEXT_ROUND= 10000
+
 export default function Game() {
   const router = useRouter()
 
   const [prompt, setPrompt] = useState(undefined)
-  //TODO: Change to 30 seconds when finalising
-  const [timeLeft, setTimeLeft] = useState(3)
+  const [timeLeft, setTimeLeft] = useState(ROUND_LENGTH)
   const [answersResponse, setanswersResponse] = useState(undefined)
 
   useEffect(() => {
@@ -57,10 +59,9 @@ export default function Game() {
       setanswersResponse(response.data)
 
       // REfresh the page after x seconds
-      //TODO: change the interval when finalising
       setTimeout(() => {
         window.location.reload(false)
-      }, 2000);
+      }, TIME_BEFORE_NEXT_ROUND);
     })
     .catch((error)=>{
       console.error("error from getting round answers", error)

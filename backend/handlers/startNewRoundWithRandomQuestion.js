@@ -18,7 +18,6 @@ export const startNewRoundWithRandomQuestion = (request, response) => {
     return hasQuestionNotBeenAsked(question)
   })
 
-  // TODO: when finalising, change to different number
   if (notYetAskedQuestions.length === 0 || gameState.rounds.length >= AMOUNT_OF_ROUNDS) {
     response.status(410).send(gameState)
     return
@@ -28,16 +27,12 @@ export const startNewRoundWithRandomQuestion = (request, response) => {
 
   const newRound = {
     id: uuidv4(),
-    // TODO: Bring back
-    // questionId: notYetAskedQuestions[randomIdx].id
-    questionId: questions[0].id
+    questionId: notYetAskedQuestions[randomIdx].id
   }
   
   gameState.rounds.push(newRound)
   return response.status(200).send({
     round: newRound,
-    // TODO: Bring back
-    // question: notYetAskedQuestions[randomIdx]
-    question: questions[0]
+    question: notYetAskedQuestions[randomIdx]
   })
 }
