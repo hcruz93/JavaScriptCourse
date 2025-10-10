@@ -1,12 +1,14 @@
 "use client"
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { makeGuess } from '@/requests/makeGuess.js';
 import * as cookieCutter from "cookie-cutter"
+import { getCurrentRound } from "../../requests/getCurrentRound.js"
 
 export default function Client() {
   const [guess, setGuess] = useState(undefined)
   const [submitSucces, setSubmitSucces] = useState(undefined)
+  const [roundId, setRoundId] = useState(undefined)
 
   const handleGuess= (event) => {
     setGuess(event.target.value)
@@ -38,8 +40,27 @@ export default function Client() {
     })
   }
 
-  return (
+  useEffect(()=> {
+    const interval = setInterval(() => {
+      getCurrentRound()
+      .then((response) => {
+        console.log("Respose current round", response)
+        if (roundId === undefined) {
+          setRoundId(response.data.id)
+        } else if (roundId !== response.data.id) {
+            window.location.reload(false)
+        }
+      })
+      .catch((error) => {
+        console.error("error getting round", error)
+      })
+    }, 1000);
+    return()=>{
+      clearInterval(interval)
+    }
+  }, [roundId])
 
+  return (
     <div>
       <h1>Make a guess</h1>
       { submitSucces == true ? null :  <p>
